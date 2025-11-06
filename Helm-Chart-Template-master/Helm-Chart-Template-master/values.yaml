@@ -37,8 +37,14 @@ ingress:
   enabled: true
   host: ecommerce.local
 
+# Autoscaling configuration for backend and frontend
 autoscaling:
   backend:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 60
+  frontend:
     enabled: true
     minReplicas: 2
     maxReplicas: 5
@@ -56,10 +62,4 @@ mysql:
     enabled: true
     storageClass: ""
 
-# Autoscaling for frontend (backend already defined above)
-autoscaling:
-  frontend:
-    enabled: true
-    minReplicas: 2
-    maxReplicas: 5
-    targetCPUUtilizationPercentage: 60
+
