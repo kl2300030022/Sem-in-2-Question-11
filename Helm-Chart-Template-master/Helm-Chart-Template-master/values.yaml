@@ -1,0 +1,63 @@
+mysql:
+  image: mysql:8.0
+  storage: 5Gi
+  rootPassword: Alajangi@06
+  database: ecommerce
+
+backend:
+  image: adithya06/ecommerce-backend:latest
+  replicas: 2
+  port: 8080
+  nodePort: 30083
+
+  # CPU/Memory requests & limits - required for HPA to compute utilization
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+frontend:
+  image: adithya06/ecommerce-frontend:latest
+  replicas: 2
+  port: 8080
+  nodePort: 30082
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+ingress:
+  enabled: true
+  host: ecommerce.local
+
+autoscaling:
+  backend:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 60
+
+# Optional image pull secrets; add names of k8s secrets that contain registry credentials
+imagePullSecrets: []
+
+# Image pull policy to use for containers
+imagePullPolicy: IfNotPresent
+
+# Optional fields for MySQL persistence control
+mysql:
+  persistence:
+    enabled: true
+    storageClass: ""
+
+  frontend:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 60

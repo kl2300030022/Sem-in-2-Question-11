@@ -1,0 +1,29 @@
+/.vscode/
+/.idea/
+**/node_modules/
+**/target/
+**/.DS_Store
+**/dist/
+**/build/
+**/*.log
+.env
+secrets.yml
+/.helm/
+/.terraform/
+**/.cache/
+**/.pytest_cache/
+.helmignore
+/.docker/
+**/npm-debug.log
+
+# local kubectl/helm
+kubeconfig
+
+# Windows
+Thumbs.db
+
+# JetBrains
+.idea
+
+# VS Code
+.vscode
