@@ -56,6 +56,8 @@ mysql:
     enabled: true
     storageClass: ""
 
+# Autoscaling for frontend (backend already defined above)
+autoscaling:
   frontend:
     enabled: true
     minReplicas: 2
